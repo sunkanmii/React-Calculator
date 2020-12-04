@@ -15,7 +15,10 @@ class App extends Component {
     this.setState({result: '0'});
   }
 
-  addToCurrent
+  addToCurrent = (symbol) =>{
+    console.log("symbol");
+  }
+
   render(){
     const buttons = [
       {symbol: 'C', cols: 3, action: this.reset},
@@ -38,10 +41,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <input type="text" className="result" value={this.state.current}/>
+        <input type="text" className="result" defaultValue={this.state.current}/>
 
         { buttons.map((btn, i) => {
-          return <Button symbol={btn.symbol} cols={btn.cols} action={(symbol) => btn.action}/>
+          return <Button key={i} symbol={btn.symbol} cols={btn.cols} action={(symbol) => btn.action(symbol)}/>
         }
       )
     }
